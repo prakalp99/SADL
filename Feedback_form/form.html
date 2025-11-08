@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Feedback Form</h2>
+    {% if error %}
+        <p style="color: red;">Error: {{ error }}</p>
+    {% endif %}
+    <form method="POST" onsubmit="return validateForm()">
+        <label>Name: <input type="text" id="name" name="name" required></label><br><br>
+        <label>Message:<br>
+            <textarea id="message" name="message" required></textarea>
+        </label><br><br>
+        <button type="submit">Submit Feedback</button>
+    </form>
+    <br>
+    <a href="/view">View All Feedback</a>
+
+    <script>
+        function validateForm() {
+            let name = document.getElementById('name').value;
+            let message = document.getElementById('message').value;
+            // Frontend Validation: Simple check for script tags
+            if (name.includes('<script') || message.includes('<script')) {
+                alert("Script tags are not allowed!");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>
